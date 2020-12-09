@@ -4,17 +4,21 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.databinding.DataBindingUtil
+import com.pgeiser.colormyviews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setListeners()
     }
 
     private fun setListeners() {
-        val allViews : List<View> = listOf(box_one_text, box_two_text, box_three_text, box_four_text, box_five_text, constraint_layout)
+        val allViews : List<View> = listOf(binding.boxOneText, binding.boxTwoText,
+            binding.boxThreeText, binding.boxFourText, binding.boxFiveText, binding.constraintLayout)
         for (item in allViews) {
             item.setOnClickListener {  makeColored(it) }
         }
